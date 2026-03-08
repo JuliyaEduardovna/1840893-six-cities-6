@@ -1,4 +1,4 @@
-export default function MainPageEmpty() {
+export default function MainPageEmpty(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">

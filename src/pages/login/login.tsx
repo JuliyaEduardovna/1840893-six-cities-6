@@ -1,4 +1,4 @@
-export default function Login() {
+export default function Login(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -30,7 +30,7 @@ export default function Login() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  required=""
+                  required
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -40,7 +40,7 @@ export default function Login() {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  required=""
+                  required
                 />
               </div>
               <button
