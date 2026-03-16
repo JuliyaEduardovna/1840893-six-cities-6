@@ -1,6 +1,6 @@
-import { Offer } from '../types/offer.type';
+import { OfferDetails } from '../types/offer.type';
 
-export const mockOffers: Offer[] = [
+export const mockOffers: OfferDetails[] = [
   {
     id: '4ccc850a-d32f-4ff5-99ed-a23a09138958',
     title: 'Waterfront with extraordinary view',

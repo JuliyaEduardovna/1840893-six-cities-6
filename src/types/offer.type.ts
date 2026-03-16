@@ -13,6 +13,9 @@ export type Offer = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
+};
+
+export type OfferDetails = Offer & {
   description: string;
   images: string[];
   bedrooms: number;
