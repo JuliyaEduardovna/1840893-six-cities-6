@@ -5,19 +5,24 @@ import { AppRoutes, Authorization } from '../../constants/constants';
 import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
 import NotFound from '../../pages/not-found/not-found';
-import Offer from '../../pages/offer/offer';
+import OfferPage from '../../pages/offer/offer';
 import PrivateRoute from '../private-route/private-route';
+import { Offer as OfferType } from '../../types/offer.type';
 
 type AppProps = {
   count: number;
+  offers: OfferType[];
 };
 
-export default function App({ count }: AppProps) {
+export default function App({ count, offers }: AppProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoutes.Root} element={<MainPage count={count} />} />
+          <Route
+            path={AppRoutes.Root}
+            element={<MainPage count={count} offers={offers} />}
+          />
 
           <Route
             path={AppRoutes.Favorites}
@@ -26,7 +31,9 @@ export default function App({ count }: AppProps) {
                 restrictedFor={Authorization.NoAuth}
                 redirectedTo={AppRoutes.Login}
               >
-                <Favorites />
+                <Favorites
+                  offers={offers.filter((offer) => offer.isFavorite)}
+                />
               </PrivateRoute>
             }
           />
@@ -43,7 +50,7 @@ export default function App({ count }: AppProps) {
             }
           />
 
-          <Route path={`${AppRoutes.Offer}/:offerId`} element={<Offer />} />
+          <Route path={`${AppRoutes.Offer}/:offerId`} element={<OfferPage />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

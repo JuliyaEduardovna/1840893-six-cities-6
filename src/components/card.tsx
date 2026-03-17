@@ -1,24 +1,44 @@
-export default function Card(){
+import { Link } from 'react-router-dom';
+import { Offer } from '../types/offer.type';
+import { AppRoutes } from '../constants/constants';
+
+type CardProps = {
+  offer: Offer;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
+
+export default function Card({
+  offer,
+  onMouseEnter,
+  onMouseLeave,
+}: CardProps): JSX.Element {
   return (
-    <article className="cities__card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article
+      className="cities__card place-card"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {offer.isPremium ? (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      ) : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoutes.Offer}/${offer.id}`}>
           <img
             className="place-card__image"
-            src="img/apartment-03.jpg"
+            src={offer.previewImage}
             width={260}
             height={200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€180</b>
+            <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">
               /&nbsp;night
             </span>
@@ -39,14 +59,14 @@ export default function Card(){
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '100%' }} />
+            <span style={{ width: `${(offer.rating / 5) * 100}%` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Nice, cozy, warm big bed apartment</a>
+          <Link to={`${AppRoutes.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );
