@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import Header from '../../components/header';
-import OffersList from '../../components/offers-list';
+import Header from '../../components/header/header';
+import OffersList from '../../components/offers-list/offers-list';
 import { Offer } from '../../types/offer.type';
+import Map from '../../components/map/map';
 
 type MainPageProps = {
   count: number;
@@ -92,7 +93,12 @@ export default function MainPage({
               <OffersList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <section className="cities__map map">
+                <Map
+                  city={offers[0]?.city}
+                  points={offers.map((offer) => offer.location)}
+                />
+              </section>
             </div>
           </div>
         </div>

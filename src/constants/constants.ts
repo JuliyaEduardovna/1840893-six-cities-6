@@ -24,3 +24,5 @@ export const RATING_STARS = [
 ];
 
 export type AuthStatus = typeof Authorization[keyof typeof Authorization];
+
+export const URL_MARKER_DEFAULT = '/img/pin.svg';

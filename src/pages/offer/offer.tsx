@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import { mockOffers } from '../../mocks/offers';
-import ReviewForm from '../../components/review-form';
+import ReviewForm from '../../components/form/review-form';
 
 type OfferRouteParams = {
   offerId: string;

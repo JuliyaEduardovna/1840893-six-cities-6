@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Card from './card';
-import { Offer } from '../types/offer.type';
+import Card from '../card/card';
+import { Offer } from '../../types/offer.type';
 
 type OffersListProps = {
   offers: Offer[];
@@ -25,4 +25,3 @@ export default function OffersList({ offers }: OffersListProps): JSX.Element {
     </div>
   );
 }
-

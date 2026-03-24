@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { RATING_STARS } from '../constants/constants';
+import { RATING_STARS } from '../../constants/constants';
 import RatingStar from './rating-star';
 
 export default function ReviewForm(): JSX.Element {

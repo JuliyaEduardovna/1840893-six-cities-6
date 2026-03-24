@@ -1,6 +1,6 @@
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import Card from '../../components/card';
+import Card from '../../components/card/card';
 import { Offer } from '../../types/offer.type';
 
 type FavoritesProps = {
