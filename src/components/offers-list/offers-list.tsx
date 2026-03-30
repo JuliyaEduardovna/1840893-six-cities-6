@@ -1,14 +1,19 @@
-import { useState } from 'react';
 import Card from '../card/card';
 import { Offer } from '../../types/offer.type';
 
 type OffersListProps = {
   offers: Offer[];
+  activeOfferId: string | null;
+  onOfferHover: (offerId: string) => void;
+  onOfferLeave: () => void;
 };
 
-export default function OffersList({ offers }: OffersListProps): JSX.Element {
-  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
-
+export default function OffersList({
+  offers,
+  activeOfferId,
+  onOfferHover,
+  onOfferLeave,
+}: OffersListProps): JSX.Element {
   return (
     <div
       className="cities__places-list places__list tabs__content"
@@ -18,8 +23,8 @@ export default function OffersList({ offers }: OffersListProps): JSX.Element {
         <Card
           key={offer.id}
           offer={offer}
-          onMouseEnter={() => setActiveOfferId(offer.id)}
-          onMouseLeave={() => setActiveOfferId(null)}
+          onMouseEnter={() => onOfferHover(offer.id)}
+          onMouseLeave={onOfferLeave}
         />
       ))}
     </div>
