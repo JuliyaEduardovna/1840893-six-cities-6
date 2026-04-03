@@ -5,6 +5,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import VariantsSorting, { SortType } from '../../components/variants-sorting/variants-sorting';
+import Spinner from '../../components/spinner/spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { CITIES } from '../../constants/cities';
@@ -15,7 +16,10 @@ export default function MainPage(): JSX.Element {
   const dispatch = useDispatch();
   const city = useSelector((state: RootState) => state.app.city);
   const allOffers = useSelector((state: RootState) => state.app.offers);
+  const loading = useSelector((state: RootState) => state.app.loading);
   const sortType = useSelector((state: RootState) => state.app.sortType);
+  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
+
   const offersByCity = allOffers.filter((offer) => offer.city.name === city.name);
 
   const sortedOffers = (() => {
@@ -32,8 +36,6 @@ export default function MainPage(): JSX.Element {
     }
   })();
 
-  const [activeOfferId, setActiveOfferId] = useState<string | null>(null);
-
   const handleCityChange = (selectedCity: City) => {
     dispatch(changeCity(selectedCity));
   };
@@ -41,6 +43,10 @@ export default function MainPage(): JSX.Element {
   const handleSortChange = (newSortType: SortType) => {
     dispatch(changeSortType(newSortType));
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page page--gray page--main">

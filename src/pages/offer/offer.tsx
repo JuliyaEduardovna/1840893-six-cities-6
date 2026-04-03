@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
-import { mockOffers } from '../../mocks/offers';
 import ReviewForm from '../../components/form/review-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { OfferDetails } from '../../types/offer.type';
 
 type OfferRouteParams = {
   offerId: string;
@@ -10,7 +12,9 @@ type OfferRouteParams = {
 
 export default function Offer(): JSX.Element {
   const { offerId } = useParams<OfferRouteParams>();
-  const currentOffer = mockOffers.find((offer) => offer.id === offerId);
+  const currentOffer = useSelector(
+    (state: RootState) => state.app.offers.find((offer) => offer.id === offerId)
+  );
 
   return (
     <div className="page">
