@@ -4,7 +4,6 @@ import Header from '../../components/header/header';
 import ReviewForm from '../../components/form/review-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { OfferDetails } from '../../types/offer.type';
 
 type OfferRouteParams = {
   offerId: string;
